@@ -53,7 +53,7 @@ class Account(object):
         except (TypeError, ValueError):
             raise
 
-        self.balance += float(money)
+        self.balance += money
         return self.balance
 
     def withdraw_funds(self, money):
