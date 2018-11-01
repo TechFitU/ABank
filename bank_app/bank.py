@@ -20,7 +20,8 @@ class Bank(object):
         """Adds an account to the bank_app
 
         :param account: the account object
-        :return: None
+        :return: The json representation of the Account object added
+        :rtype: dict
         """
         self.accounts[account.account_number] = account.json()
         # We should save in database the new account using self.di, but not now in order to get our tests passed
@@ -81,5 +82,4 @@ if __name__ == "__main__":  # pragma: no cover
 
     # Running Your Doctests
     import doctest
-
     doctest.testmod()
