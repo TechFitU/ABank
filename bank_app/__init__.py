@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 
 from bank_app.account import Account
 from bank_app.bank import Bank
@@ -41,13 +41,63 @@ def create_app(test_config=None):
 
     @app.route('/home', methods=('GET', 'POST'))
     def home():
+
         balance = None
         if request.method == 'POST':
-            acc = request.form.get('account_number', default=None)
-
-            if acc is not None:
-                balance = BANK_INSTANCE.get_account_balance(acc)
+            acc_number = request.form.get('account_number', default=None)
+            data = BANK_INSTANCE.get_account(acc_number)
+            if data is None:
+                flash("Bank account doesn't exists", category="error")
+            else:
+                acc = Account(**data)
+                balance = acc.balance
 
         return render_template('index.html', balance=balance)
+
+    @app.route('/deposit/<string:account_number>', methods=('GET', 'POST'))
+    def deposit(account_number):
+        data = BANK_INSTANCE.get_account(account_number)
+        balance = None
+        acc = None
+        if data is None:
+            flash("Bank account doesn't exists", category="error")
+        else:
+            acc = Account(**data)
+            balance = acc.balance
+
+        if request.method == 'POST' and acc is not None:
+            deposit_amount = request.form.get('deposit_number', default=None)
+            try:
+                acc.deposit_funds(deposit_amount)
+                BANK_INSTANCE.add_account(acc)
+            except (TypeError, ValueError):
+                flash("Invalid data type or value for the deposit amount", category="error")
+            balance = acc.balance
+
+        return render_template('deposit.html', account_number=account_number, balance=balance)
+
+    @app.route('/withdraw/<string:account_number>', methods=('GET', 'POST'))
+    def withdraw(account_number):
+        data = BANK_INSTANCE.get_account(account_number)
+        balance = None
+        acc = None
+        if data is None:
+            flash("Bank account doesn't exists", category="error")
+        else:
+            acc = Account(**data)
+            balance = acc.balance
+
+        if request.method == 'POST' and acc is not None:
+            withdraw_amount = request.form.get('withdraw_number', default=None)
+            try:
+                acc.withdraw_funds(withdraw_amount)
+                BANK_INSTANCE.add_account(acc)
+
+            except (ValueError, TypeError) as ex:
+                flash("Invalid data type or value for the withdrawal amount", category="error")
+            balance = acc.balance
+            print(balance)
+
+        return render_template('withdraw.html', account_number=account_number, balance=balance)
 
     return app

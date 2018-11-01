@@ -9,7 +9,11 @@ class Account(object):
         :param balance: Current account balance
         """
 
+        if not isinstance(account_number, str):
+            raise TypeError('Account number must be a str')
         self.account_number = account_number
+        if not isinstance(balance, float):
+            raise TypeError('Balance must be a float')
         self.balance = balance
 
     def __repr__(self):
@@ -44,6 +48,11 @@ class Account(object):
         :rtype: float
         :raise: An exception of type ValueError if money is not a number or a string representation of a number
         """
+        try:
+            money = float(money)
+        except (TypeError, ValueError):
+            raise
+
         self.balance += float(money)
         return self.balance
 
@@ -60,8 +69,17 @@ class Account(object):
         :rtype: float
         :raise: An exception of type ValueError if money is not a number or a string representation of a number
         """
+        try:
+            money = float(money)
+        except (TypeError, ValueError):
+            raise
 
-        self.balance -= float(money)
+        if money > 600.0:
+            raise ValueError('The maximum amount allowed is 600.0 a day')
+        if self.balance < money:
+            raise ValueError('Not enough money {} in your account to complete the withdrawal'.format(self.balance))
+
+        self.balance -= money
 
         return self.balance
 

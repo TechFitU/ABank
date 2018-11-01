@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form id="deposit-form" method="post">
+    {{ csrf_token }}
+    <input type="hidden" name="account_number" value="{{ account_number }}">
+    <label>Deposit Amount: </label><input class="form-control" name="deposit_number" type="number"/>
+    <button type="submit">Submit</button>
+</form>
+{% if balance|float >= 0.0 %}
+Balance: {{ balance|float }}
+{% endif %}
+{% endblock %}

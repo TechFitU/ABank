@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Bank App</title>
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block content %}
 <form id="account-form" method="post">
     <label>Account Number: </label><input name="account_number" type="text"/>
     <input type="submit"/>
@@ -13,5 +9,5 @@
 {% if balance %}
 Balance: {{ balance }}
 {% endif %}
-</body>
-</html>
+
+{% endblock %}
