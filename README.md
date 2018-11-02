@@ -31,7 +31,7 @@ On Windows:
     > py -3 -m venv venv
     
 
-If you needed to install virtualenv because you are on an older version of Python, use the following command instead:
+If you needed to install virtualenv (http://flask.pocoo.org/docs/1.0/installation/#install-virtualenv) because you are on an older version of Python, use the following command instead:
 
     virtualenv venv --python=/route/to/python
 
