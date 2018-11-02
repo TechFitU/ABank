@@ -81,9 +81,19 @@ Install behave, pytest and coverage libraries by running:
 
     pip install behave pytest pytest-cov coverage
    
-Run the unit and system tests with coverage support:
+Run the tests with pytest and code coverage support (reports is displayed in terminal with missing line numbers shown).
+You can add add --pdb to debug every fail test.
 
-    py.test -v -rf --pdb --cov bank_app/ tests/
+    py.test -v -r f --cov-report term-missing --cov=bank_app/ tests/
+
+These two report options output to files without showing anything on the terminal:
+
+    py.test -v -r f --cov-report html --cov-report xml --cov=bank_app/ tests/
+
+Or
+
+    coverage run -m pytest -v -r f
+    coverage report --show-missing
     
 Run the acceptance tests (developers run with arguments: --stop --tags=-pending):
 
