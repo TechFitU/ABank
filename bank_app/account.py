@@ -88,5 +88,4 @@ if __name__ == "__main__":  # pragma: no cover
 
     # Running Your Doctests
     import doctest
-
     doctest.testmod()

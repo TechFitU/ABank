@@ -1,0 +1,18 @@
+1. Tagging Scenarios
+@mytag
+Scenario: Retrieve some other account
+    ....
+
+2. Run every acceptance tests except tagged
+behave --tags=-mytags tests/acceptance
+
+3. Run only tagged acceptance tests
+behave --tags=mytags tests/acceptance
+
+4. Unless you want to see the entire status of your test suite, you can set Lettuce
+to stop execution of your tests when it encounters its first failing test.
+This can also be useful locally on your development machine, where you can fail your build sooner and have a
+quicker feedback loop to alert you to the need for additional changes.
+
+
+behave --stop tests/acceptance
