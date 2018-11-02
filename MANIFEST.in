@@ -1,0 +1,6 @@
+include LICENSE
+include requirements.txt
+graft bank_app/static
+graft bank_app/templates
+graft tests
+global-exclude *.pyc
