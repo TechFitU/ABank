@@ -12,9 +12,10 @@ class Account(object):
         if not isinstance(account_number, str):
             raise TypeError('Account number must be a str')
         self.account_number = account_number
-        if not isinstance(balance, float):
-            raise TypeError('Balance must be a float')
-        self.balance = balance
+        try:
+            self.balance = float(balance)
+        except (TypeError, ValueError):
+            raise
 
     def __repr__(self):
         return "Account(id={}, balance={})".format(self.account_number,
@@ -26,7 +27,7 @@ class Account(object):
 
         >>> a = Account('001', 50.00)
         >>> a.json()
-        {'account_number': '001', 'balance': 50.00}
+        {'account_number': '001', 'balance': 50.0}
 
         :return: dictionary representation of the Account object
         :rtype: dict
@@ -39,7 +40,7 @@ class Account(object):
 
         >>> a = Account('001', 50.0)
         >>> a.deposit_funds(30.0)
-        80
+        80.0
 
         :param money: Amount of money to deposit
         :return: The new balance
@@ -60,7 +61,7 @@ class Account(object):
 
         >>> a = Account('001', 50.0)
         >>> a.withdraw_funds(30.0)
-        20
+        20.0
 
         :param money: Amount of money to withdraw
         :return: The new balance

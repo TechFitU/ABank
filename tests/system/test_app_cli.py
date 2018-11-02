@@ -52,7 +52,8 @@ class AppCliTest(unittest.TestCase):
 
     def test_menu_calls_each_function_in_app_given_selection(self):
         with patch(
-                'builtins.input', side_effect=('c', 'l', 'r', 'd', 'w', 'q')):
+                'builtins.input',
+                side_effect=('001', 'c', 'l', 'r', 'd', 'w', 'q')):
             with patch('bank_app.app_cli.ask_create_bank_account'
                        ) as mocked_create_account_func:
                 with patch('bank_app.app_cli.print_accounts'
