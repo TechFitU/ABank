@@ -15,6 +15,7 @@ This project has the following basic features:
 
     
     git clone git@github.com:TechFitU/ABank.git
+    
     cd ABank 
 
 2. Set up a development environment quickly, first install Python 3. It
