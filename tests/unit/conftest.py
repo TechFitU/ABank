@@ -8,9 +8,7 @@ def app():
     """Create and configure a new app instance for each test."""
 
     # create the app with common test config
-    app = create_app({
-        'TESTING': True
-    })
+    app = create_app({'TESTING': True})
     yield app
 
 
@@ -32,9 +30,10 @@ class AuthActions(object):
 
     def login(self, username='test', password='test'):
         return self._client.post(
-            '/auth/login',
-            data={'username': username, 'password': password}
-        )
+            '/auth/login', data={
+                'username': username,
+                'password': password
+            })
 
     def logout(self):
         return self._client.get('/auth/logout')

@@ -10,10 +10,10 @@ BANK_INSTANCE = Bank('RANDOLPH')
 
 def create_app(test_config=None):
     # Find the correct template folder when running from a different location
-    tmpl_dir = os.path.join(
-        os.path.dirname(__file__), 'templates')
+    tmpl_dir = os.path.join(os.path.dirname(__file__), 'templates')
     # Creating our flask app and configure it through its config dictionary
-    app = Flask(__name__, template_folder=tmpl_dir, instance_relative_config=True)
+    app = Flask(
+        __name__, template_folder=tmpl_dir, instance_relative_config=True)
 
     # ensure the instance folder exists
     try:
@@ -71,10 +71,13 @@ def create_app(test_config=None):
                 acc.deposit_funds(deposit_amount)
                 BANK_INSTANCE.add_account(acc)
             except (TypeError, ValueError):
-                flash("Invalid data type or value for the deposit amount", category="error")
+                flash(
+                    "Invalid data type or value for the deposit amount",
+                    category="error")
             balance = acc.balance
 
-        return render_template('deposit.html', account_number=account_number, balance=balance)
+        return render_template(
+            'deposit.html', account_number=account_number, balance=balance)
 
     @app.route('/withdraw/<string:account_number>', methods=('GET', 'POST'))
     def withdraw(account_number):
@@ -94,10 +97,13 @@ def create_app(test_config=None):
                 BANK_INSTANCE.add_account(acc)
 
             except (ValueError, TypeError) as ex:
-                flash("Invalid data type or value for the withdrawal amount", category="error")
+                flash(
+                    "Invalid data type or value for the withdrawal amount",
+                    category="error")
             balance = acc.balance
             print(balance)
 
-        return render_template('withdraw.html', account_number=account_number, balance=balance)
+        return render_template(
+            'withdraw.html', account_number=account_number, balance=balance)
 
     return app

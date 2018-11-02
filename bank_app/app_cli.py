@@ -12,8 +12,9 @@ current_account = None
 
 
 def menu():
-    account_number = input('Welcome, lets start by accessing your bank account. Please provide your bank '
-                           'account number: ')
+    account_number = input(
+        'Welcome, lets start by accessing your bank account. Please provide your bank '
+        'account number: ')
 
     global current_account
 
@@ -73,8 +74,9 @@ def ask_deposit_funds():
     global current_account
     try:
         funds = input("Enter the money amount to deposit: ")
-        print('The new balance for account {} is {}'.format(current_account.account_number,
-                                                            current_account.deposit_funds(funds)))
+        print('The new balance for account {} is {}'.format(
+            current_account.account_number,
+            current_account.deposit_funds(funds)))
     except ValueError:
         print('The amount to be deposited is not a valid number')
 
@@ -83,8 +85,9 @@ def ask_withdraw_funds():
     global current_account
     try:
         funds = input("Enter the money amount to withdraw: ")
-        print('The new balance for account {} is {}'.format(current_account.account_number,
-                                                            current_account.withdraw_funds(funds)))
+        print('The new balance for account {} is {}'.format(
+            current_account.account_number,
+            current_account.withdraw_funds(funds)))
     except ValueError:
         print('The amount to withdrawal is not a valid number')
 

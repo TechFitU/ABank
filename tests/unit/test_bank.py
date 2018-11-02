@@ -8,7 +8,6 @@ from bank_app.bank import DBConnectionError
 
 
 class BankTest(unittest.TestCase):
-
     def setUp(self):
         self.bank = Bank('Randolph')
 
@@ -17,9 +16,11 @@ class BankTest(unittest.TestCase):
         self.assertEqual(len(self.bank.accounts), 0)
 
     def test_bank_representation(self):
-        self.assertEqual("Bank(name=Randolph, accounts=0)", self.bank.__repr__())
+        self.assertEqual("Bank(name=Randolph, accounts=0)",
+                         self.bank.__repr__())
         self.bank.add_account(Account('001', 50.00))
-        self.assertEqual("Bank(name=Randolph, accounts=1)", self.bank.__repr__())
+        self.assertEqual("Bank(name=Randolph, accounts=1)",
+                         self.bank.__repr__())
 
     def test_add_account(self):
         account_1 = Account('001', 50.00)
@@ -70,7 +71,8 @@ class BankTest(unittest.TestCase):
         self.assertEqual(50.00, self.bank.get_account_balance('001'))
         mock_data_interface.get.assert_called_once_with('001')
 
-    def test_get_account_balance_catches_exception_raised_when_access_database(self):
+    def test_get_account_balance_catches_exception_raised_when_access_database(
+            self):
         mock_data_interface = Mock()
 
         mock_data_interface.get.side_effect = DBConnectionError()

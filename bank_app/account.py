@@ -17,7 +17,8 @@ class Account(object):
         self.balance = balance
 
     def __repr__(self):
-        return "Account(id={}, balance={})".format(self.account_number, self.balance)
+        return "Account(id={}, balance={})".format(self.account_number,
+                                                   self.balance)
 
     def json(self):
         """
@@ -30,10 +31,7 @@ class Account(object):
         :return: dictionary representation of the Account object
         :rtype: dict
         """
-        return {
-            'account_number': self.account_number,
-            'balance': self.balance
-        }
+        return {'account_number': self.account_number, 'balance': self.balance}
 
     def deposit_funds(self, money):
         """
@@ -77,7 +75,9 @@ class Account(object):
         if money > 600.0:
             raise ValueError('The maximum amount allowed is 600.0 a day')
         if self.balance < money:
-            raise ValueError('Not enough money {} in your account to complete the withdrawal'.format(self.balance))
+            raise ValueError(
+                'Not enough money {} in your account to complete the withdrawal'
+                    .format(self.balance))
 
         self.balance -= money
 

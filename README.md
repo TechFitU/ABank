@@ -64,21 +64,24 @@ Or
 Ready!. Open http://127.0.0.1:5000 in a browser.
 
     
-## Test
-###Using PyCharm
+## Develop, Contribute and Test
+###Test using PyCharm
 Create a sample unittest configuration in PyCharm (for example), and choose:
 
 - `Path` as as target, with your project's `/tests` folder.
 
 - Run the tests
 
-###Using Pytest and Behave and Coverage
+###Test using Pytest and Behave and Coverage
+Please code and contribute using PEP-8 specification for code style. But if its so boring, install yapf library to make it by command:
+
+    yapf  -i -r -p -e venv .
+    
 Install behave, pytest and coverage libraries by running:
 
-    pip install behave
-    pip install pytest pytest-cov coverage
+    pip install behave pytest pytest-cov coverage
    
-Run the unit and system tests:
+Run the unit and system tests with coverage support:
 
     py.test -v -rf --pdb --cov bank_app/ tests/
     

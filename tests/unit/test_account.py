@@ -4,7 +4,6 @@ from bank_app.account import Account
 
 
 class AccountTest(unittest.TestCase):
-
     def setUp(self):
         self.account = Account('001', 50.0)
 
@@ -13,10 +12,14 @@ class AccountTest(unittest.TestCase):
         self.assertEqual(self.account.balance, 50.0)
 
     def test_json(self):
-        self.assertDictEqual({'account_number': '001', 'balance': 50.0}, self.account.json())
+        self.assertDictEqual({
+            'account_number': '001',
+            'balance': 50.0
+        }, self.account.json())
 
     def test_account_representation(self):
-        self.assertEqual(self.account.__repr__(), "Account(id=001, balance=50.0)")
+        self.assertEqual(self.account.__repr__(),
+                         "Account(id=001, balance=50.0)")
 
     def test_deposit_funds_with_right_amount(self):
         self.assertEqual(100.34, self.account.deposit_funds(50.34))

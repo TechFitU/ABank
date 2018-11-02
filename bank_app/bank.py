@@ -14,7 +14,8 @@ class Bank(object):
         self.accounts = {}
 
     def __repr__(self):
-        return "Bank(name={}, accounts={})".format(self.name, len(self.accounts))
+        return "Bank(name={}, accounts={})".format(self.name,
+                                                   len(self.accounts))
 
     def add_account(self, account):
         """Adds an account to the bank_app
@@ -39,7 +40,8 @@ class Bank(object):
         """
 
         if not isinstance(account_number, str):
-            raise ValueError('Invalid type <{}> for account number'.format(type(account_number)))
+            raise ValueError('Invalid type <{}> for account number'.format(
+                type(account_number)))
 
         try:
             if self.di is not None:
@@ -65,7 +67,8 @@ class Bank(object):
         """
 
         if not isinstance(account_number, str):
-            raise ValueError('Invalid type <{}> for account number'.format(type(account_number)))
+            raise ValueError('Invalid type <{}> for account number'.format(
+                type(account_number)))
 
         try:
             result = self.di.get(account_number) if self.di is not None \

@@ -34,7 +34,8 @@ def when_i_enter_the_account_number_group1(context, account_number):
 
 @then(u'I see a balance of "([^"]*)"')
 def then_i_see_a_balance_of_group1(context, expected_balance):
-    assert_in("Balance: {}".format(expected_balance), context.form_response.text)
+    assert_in("Balance: {}".format(expected_balance),
+              context.form_response.text)
 
 
 @then(u'I see an error saying "([^"]*)"')
@@ -52,7 +53,8 @@ def step_impl(context, account_number):
     app = create_app({'TESTING': True})
     context.browser = TestApp(app)
 
-    context.response = context.browser.get('/deposit/{}'.format(account_number))
+    context.response = context.browser.get(
+        '/deposit/{}'.format(account_number))
     assert_equal(200, context.response.status_code)
 
 
@@ -69,7 +71,8 @@ def step_impl(context, account_number):
     app = create_app({'TESTING': True})
     context.browser = TestApp(app)
 
-    context.response = context.browser.get('/withdraw/{}'.format(account_number))
+    context.response = context.browser.get(
+        '/withdraw/{}'.format(account_number))
     assert_equal(200, context.response.status_code)
 
 
