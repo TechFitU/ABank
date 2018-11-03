@@ -11,15 +11,14 @@ This project has the following basic features:
 
 ## Installation
 
-1. Clone the project source code from the repository:
-
+Clone the project source code from the repository:
     
     git clone git@github.com:TechFitU/ABank.git
     
-    cd ABank 
+    cd ABank
 
-2. Set up a development environment quickly, first install Python 3. It
-comes with virtualenv built-in.
+#### Set up a development environment
+Quickly, first install Python 3. It comes with virtualenv built-in.
 
 Create it by:
 
@@ -33,25 +32,54 @@ On Windows:
 
 If you needed to install virtualenv (http://flask.pocoo.org/docs/1.0/installation/#install-virtualenv) because you are on an older version of Python, use the following command instead:
 
+On Linux, virtualenv is provided by your package manager:
+
+   - Debian, Ubuntu
+
+    
+    sudo apt-get install python-virtualenv
+    
+   - CentOS, Fedora
+
+
+    sudo yum install python-virtualenv
+    
+   - Arch
+
+
+    sudo pacman -S python-virtualenv
     virtualenv venv --python=/route/to/python
 
-On Windows:
+   - If you are on Mac OS X or Windows, download get-pip.py, then:
+
+
+    sudo python2 Downloads/get-pip.py
+    sudo python2 -m pip install virtualenv
+
+-   On Windows, as an administrator:
+
+    \Python27\python.exe Downloads\get-pip.py
+    \Python27\python.exe -m pip install virtualenv
+
+On Windows create the virtual environment by executing:
 
     C:\Python27\Scripts\virtualenv.exe venv
    
-3. Activate it by running:
+
+#### Activate environment by running:
 
 
     $ . my_env/bin/activate
- 
 
 On Windows CMD prompt:
 
     > venv\Scripts\activate.bat
 
-Install all dependencies. If you need to keep requirements.txt updated then run:
+#### Install all dependencies
+If you need to keep requirements.txt updated then run:
 
     pip install -r requirements.txt
+    pip freeze > requirements.txt
 
 ## Run
 
@@ -95,9 +123,13 @@ Or
     coverage run -m pytest -v -r f
     coverage report --show-missing
     
-Run the acceptance tests (developers run with arguments: --stop --tags=-pending):
+Run the acceptance tests
 
-    behave tests/acceptance
+    behave tests/acceptance --stop --tags=pending
+
+If you want to automate the build-testing process you should run the acceptance testing task in this way:
+
+    behave tests/acceptance --tags=-pending
 
 ### Detailed instructions
 
