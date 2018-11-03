@@ -1,5 +1,5 @@
-from paver.tasks import task, BuildFailure, needs
 from paver.easy import sh
+from paver.tasks import task, BuildFailure, needs
 
 
 @task
@@ -9,7 +9,7 @@ def acceptance_tests():
 
 @task
 def unit_system_tests():
-    sh('py.test -v -r f --cov-report term-missing --cov=bank_app/ tests/')
+    sh('py.test -v -r f --cov-report html --cov-report xml --cov=bank_app/ tests/')
 
 
 @task
@@ -26,8 +26,7 @@ def format_python_code():
     sh('yapf  -i -r -p -e venv .')
 
 
-@needs('unit_system_tests', 'acceptance_tests', 'run_pylint',
-       'format_python_code')
+@needs('unit_system_tests', 'acceptance_tests', 'run_pylint')
 @task
 def default():
     pass
