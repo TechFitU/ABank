@@ -22,7 +22,7 @@ Quickly, first install Python 3. It comes with virtualenv built-in.
 
 Create it by:
 
-    $ python3 -m venv my_env`
+    $ python3 -m venv my_env
 
 On Windows:
 
@@ -116,12 +116,12 @@ You can add add --pdb to debug every fail test.
 
 These two report options output to files without showing anything on the terminal:
 
-    py.test -v -r f --cov-report html --cov-report xml --cov=bank_app/ tests/
+    py.test -v -r f --cov-report html --cov-report xml --cov-fail-under=95 --cov=bank_app/ tests/
 
 Or
 
     coverage run -m pytest -v -r f
-    coverage report --show-missing
+    coverage report --show-missing --skip-covered --fail-under=95
     
 Run the acceptance tests
 
